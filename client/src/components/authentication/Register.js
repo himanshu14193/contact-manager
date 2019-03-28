@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import {Card, CardBody} from 'reactstrap'
 class Register extends React.Component{
     constructor(props){
         super(props)
@@ -35,25 +36,29 @@ class Register extends React.Component{
     render(){
         return (
             <div className="container">
-              <h2 align="center">Sign Up here...</h2>
-              <form onSubmit={this.handleSubmit} className="form">
-              <div className="form-group">
-                  <label >Username:</label>
-                  <input className="form-control" type="text" value={this.state.username} onChange={this.handleChange} placeholder="enter username" name="username" />
-              </div>
+                <Card className="m-5 bg-dark" >
+                    <form onSubmit={this.handleSubmit} className="form">
+                        <CardBody>
+                            <h2 className="m-3  text-center">Please Register</h2>
+                            <div className="form-group ml-5 mr-5">
+                                <label >Username:</label>
+                                <input className="form-control" type="text" value={this.state.username} onChange={this.handleChange} placeholder="enter username" name="username" required />
+                            </div>
 
-              <div className="form-group">
-                  <label >Email:</label>
-                  <input className="form-control" type="email" value={this.state.email} onChange={this.handleChange} placeholder="enter email id" name="email" />
-              </div>
+                            <div className="form-group ml-5 mr-5">
+                                <label >Email:</label>
+                                <input className="form-control" type="email" value={this.state.email} onChange={this.handleChange} placeholder="enter email id" name="email" required />
+                            </div>
 
-              <div className="form-group">
-                  <label >Password:</label>
-                  <input className="form-control" type="password" value={this.state.password} onChange={this.handleChange} placeholder="enter password" name="password" />
-              </div>
+                            <div className="form-group ml-5 mr-5">
+                                <label >Password:</label>
+                                <input className="form-control" type="password" value={this.state.password} onChange={this.handleChange} placeholder="enter password" name="password" required />
+                            </div>
 
-              <input type="submit" className="btn btn-primary"/>
-          </form>
+                            <input type="submit" className="btn btn-primary ml-5"/>
+                        </CardBody>
+                    </form>
+                </Card>
             </div>
           )
     }

@@ -1,4 +1,5 @@
 import React from 'react'
+import {Card, CardBody} from 'reactstrap'
 class NotesForm extends React.Component {
     constructor(props){
         super(props)
@@ -42,25 +43,29 @@ class NotesForm extends React.Component {
     render(){
         return (
                 <div>
-                <h2 align="center">Add New Note</h2>
-                    <form onSubmit={this.handleSubmit} className="form">
-                        <div className="form-group">
-                            <label >Title:</label>
-                            <input className="form-control" type="text" value={this.state.title} onChange={this.handleTitleChange} placeholder="Title"/>
-                        </div>
+                    <Card  className="m-5 bg-dark">
+                        <form onSubmit={this.handleSubmit} className="form">
+                            <CardBody>
+                                <h2 className="m-3 text-center">Add New Note</h2>
+                                <div className="form-group ml-5 mr-5">
+                                    <label >Title:</label>
+                                    <input className="form-control" type="text" value={this.state.title} onChange={this.handleTitleChange} placeholder="Title"/>
+                                </div>
 
-                        <div className="form-group">
-                            <label >Body:</label>
-                            <input className="form-control" type="text" value={this.state.body} onChange={this.handleBodyChange} placeholder="Text goes here" />
-                        </div>
+                                <div className="form-group ml-5 mr-5">
+                                    <label >Body:</label>
+                                    <textarea className="form-control"  rows="5" value={this.state.body} onChange={this.handleBodyChange} placeholder="Text goes here" />
+                                </div>
 
-                        <div className="form-group">
-                            <label >Tags:</label>
-                            <input className="form-control" type="text" value={this.state.tags} onChange={this.handleTagsChange} placeholder="Enter tags"/>
-                        </div>
+                                <div className="form-group ml-5 mr-5">
+                                    <label >Tags:</label>
+                                    <input className="form-control" type="text" value={this.state.tags} onChange={this.handleTagsChange} placeholder="Enter tags"/>
+                                </div>
 
-                        <input type="submit" className="btn btn-primary"/>
-                    </form>
+                                <input type="submit" className="btn btn-primary ml-5"/>
+                            </CardBody>
+                        </form>
+                    </Card>
                 </div>
           )
     }

@@ -24,7 +24,7 @@ class NotesList extends React.Component {
                                 
                                     { this.state.notes.map(note => {
                                         return (
-                                            <Card  body inverse style={{ backgroundColor: '#222', borderColor: '#333' }} className="text m-1" key={note._id}>
+                                            <Card  body inverse style={{ backgroundColor: '#444' }} className="text m-2" key={note._id}>
                                                 <CardHeader  tag="h4"><Link to={`/notes/${note._id}`}>{note.title}</Link></CardHeader>
                                                 <CardBody>
                                                     <CardText tag="h6">{note.body}</CardText>
@@ -37,7 +37,9 @@ class NotesList extends React.Component {
                             </div>
                         )
                     }
-                    <Link to="/notes/new">Add NewNote</Link>
+                    <div  className="m-2">
+                        <Link to="/notes/new">Add NewNote</Link>
+                    </div>
                 </div>
           )
     }

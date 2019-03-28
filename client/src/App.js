@@ -35,9 +35,12 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
+        <div className="jumbotron bg-warning text-center m-0 ">
+          <h1>Contact Manager</h1>
+        </div>
         <div>
           <Navbar className="navbar navbar-expand-sm bg-dark navbar-dark">
-            <NavbarBrand href="/" className="mr-4">Contact Manager</NavbarBrand>
+            <NavbarBrand href="/" className="mr-4">Home</NavbarBrand>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
                   <Collapse isOpen={!this.state.collapsed} navbar>
                   { this.state.isAuthenticated &&

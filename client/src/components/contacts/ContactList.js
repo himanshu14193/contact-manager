@@ -24,7 +24,7 @@ class ContactsList extends React.Component {
                                     { this.state.contacts.map(contact => {
                                         return (
                                             <div key={contact._id} >
-                                                <li  className="list-group-item list-group-item-dark"><Link to={`/contacts/${contact._id}`}>{contact.name}</Link></li>
+                                                <li  className="list-group-item list-group-item-dark m-1"><Link to={`/contacts/${contact._id}`}>{contact.name}</Link></li>
                                             </div>
                                         )
                                     })}
@@ -32,7 +32,9 @@ class ContactsList extends React.Component {
                             </div>
                         )
                     }
-                    <Link to="/contacts/new">Add Contact</Link>
+                    <div  className="m-2">
+                        <Link to="/contacts/new">Add Contact</Link>
+                    </div>
                 </div>
           )
     }

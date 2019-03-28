@@ -2,7 +2,7 @@ import React from 'react'
 const Home = (props) =>{
     return (
       <div>
-        <h2 align="center">Home Page</h2>
+        <h2 className="text-center jumbotron bg-info ">Welcome to Contact Manager App</h2>
       </div>
     )
   }
