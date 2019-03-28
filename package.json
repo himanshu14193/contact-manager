@@ -6,7 +6,7 @@
   "scripts": {
     "client_install": "cd client && npm install",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
+    "start": "node index.js cd client && npm start",
     "dev": "concurrently \"nodemon index.js\" \"cd client && npm start\" "
   },
   "keywords": [],
