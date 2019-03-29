@@ -3,7 +3,7 @@ import axios from'axios'
 import NoteForm from "./Form"
 class NewNote extends React.Component{
     handleSubmit = (formData) =>{
-        axios.post('http://localhost:3005/notes', formData)
+        axios.post('/notes', formData)
             .then(() => this.props.history.push('/notes'))
             .catch(err => console.log(err))
     }

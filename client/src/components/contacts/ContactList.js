@@ -9,7 +9,7 @@ class ContactsList extends React.Component {
         }
     }
     componentDidMount(){
-        axios.get("http://localhost:3005/contacts")
+        axios.get("/contacts")
             .then(res=> this.setState(()=>({ contacts:res.data })))
             .catch(err=> console.log(err))
     }

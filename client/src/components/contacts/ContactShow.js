@@ -12,14 +12,14 @@ class ShowContact extends React.Component{
     handleDelete = () =>{
         const confirmDelete= window.confirm('Are you sure?')
         if(confirmDelete){
-            axios.delete(`http://localhost:3005/contacts/${this.state.contact._id}`)
+            axios.delete(`/contacts/${this.state.contact._id}`)
                 .then(() => this.props.history.push('/contacts'))
                 .catch(err=>window.alert(err))
         }
     }
     componentDidMount(){
         const id = this.props.match.params.id
-        axios.get(`http://localhost:3005/contacts/${id}`)
+        axios.get(`/contacts/${id}`)
             .then(res=>this.setState(()=>({ contact : res.data })))
             .catch(err=>console.log(err))
     }

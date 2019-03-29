@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Link, Route, Switch, } from 'react-router-dom'
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem } from 'reactstrap'
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
+import  { MDBIcon }  from "mdbreact"
 import Home from "./components/layouts/home"
 import ContactList from "./components/contacts/ContactList"
 import ContactNew from "./components/contacts/New"
@@ -13,6 +17,7 @@ import NoteEdit from "./components/notes/NotesEdit"
 import Register from "./components/authentication/Register"
 import Login from "./components/authentication/Login"
 import Logout from "./components/authentication/Logout"
+import Account from "./components/authentication/Account"
 
 class App extends Component {
   constructor(){
@@ -40,16 +45,16 @@ class App extends Component {
         </div>
         <div>
           <Navbar className="navbar navbar-expand-sm bg-dark navbar-dark">
-            <NavbarBrand href="/" className="mr-4">Home</NavbarBrand>
+            <NavbarBrand href="/" className="mr-4"><MDBIcon icon="home" /> Home </NavbarBrand>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
                   <Collapse isOpen={!this.state.collapsed} navbar>
                   { this.state.isAuthenticated &&
                     <Nav navbar className="mr-auto">
                         <NavItem>
-                          <Link to="/contacts" className="nav-link active" >Contacts</Link>
+                          <Link to="/contacts" className="nav-link active" ><MDBIcon far icon="address-card" /> Contacts </Link>
                         </NavItem>
                         <NavItem>
-                          <Link to="/notes" className="nav-link active" >Notes</Link>
+                          <Link to="/notes" className="nav-link active" ><MDBIcon icon="sticky-note" /> Notes </Link>
                         </NavItem>
                     </Nav>
                   }
@@ -57,19 +62,21 @@ class App extends Component {
 
                         <Nav className='rightNav ml-auto' navbar>
                           <NavItem>
-                            <Link to="/users/logout" className="nav-link active" >Logout</Link>
+                            <Link to="/users/account" className="nav-link active" ><MDBIcon icon="user-alt" /> Account </Link>
+                          </NavItem>
+                          <NavItem>
+                            <Link to="/users/logout" className="nav-link active" ><MDBIcon icon="sign-out-alt" /> Logout </Link>
                           </NavItem>
                         </Nav>
                         :
                         <Nav className='rightNav ml-auto' navbar>  
                           <NavItem>
-                            <Link to="/users/login" className="nav-link active" >Login</Link>
+                            <Link to="/users/login" className="nav-link active" ><MDBIcon icon="sign-in-alt" /> Login </Link>
                           </NavItem>
                           <NavItem>
-                            <Link to="/users/register" className="nav-link active" >Register</Link>
+                            <Link to="/users/register" className="nav-link active" ><MDBIcon icon="user-plus" /> Register </Link>
                           </NavItem>
                         </Nav>
-
                   }
                   </Collapse>
           </Navbar>
@@ -86,6 +93,7 @@ class App extends Component {
             <Route path="/users/register" component={Register} exact={true} />
             <Route path="/users/login" render={()=><Login handleIsAuthenticated={this.handleIsAuthenticated} />} exact={true} />
             <Route path="/users/logout" render={(props)=><Logout {...props} handleIsAuthenticated={this.handleIsAuthenticated} />} exact={true}/>
+            <Route path="/users/account" component={Account} exact={true} />
           </Switch>
         </div>
       </BrowserRouter>

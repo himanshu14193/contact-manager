@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import {Card, CardBody} from 'reactstrap'
+import  { MDBIcon }  from "mdbreact"
 class Register extends React.Component{
     constructor(props){
         super(props)
@@ -8,26 +9,33 @@ class Register extends React.Component{
             username:'',
             email:'',
             password:'',
+            confirmPassword:'',
             isRegistered:false,
             type:"password"
         }
     }
     handleSubmit = (e) =>{
         e.preventDefault()
-        const formData ={
-            username:this.state.username,
-            email:this.state.email,
-            password:this.state.password
+        const { username, email, password, confirmPassword } =this.state
+        if(password !== confirmPassword){
+            window.alert("Password didn't match")
+        }else{
+            const formData ={
+                username,
+                email,
+                password
+            }
+            // const url=("https://contact-manager-himanshu14193.herokuapp.com" || "http://localhost:3005" )
+            axios.post(`/users/register`,formData)
+                .then(()=>this.props.history.push('/users/login'))
+                .catch(err=>console.log(err))
+            this.setState(()=>({
+                username:'',
+                email:'',
+                password:''
+            }))
         }
-        // const url=("https://contact-manager-himanshu14193.herokuapp.com" || "http://localhost:3005" )
-        axios.post(`http://localhost:3005/users/register`,formData)
-            .then(()=>this.props.history.push('/users/login'))
-            .catch(err=>console.log(err))
-        this.setState(()=>({
-            username:'',
-            email:'',
-            password:''
-        }))
+        
     }
     handleChange =(e)=>{
         e.persist()
@@ -44,20 +52,24 @@ class Register extends React.Component{
                 <Card className="m-5 bg-dark" >
                     <form onSubmit={this.handleSubmit} className="form">
                         <CardBody>
-                            <h2 className="m-3  text-center">Please Register</h2>
+                            <h2 className="m-3  text-center"><MDBIcon icon="user-plus" /> Please Register </h2>
                             <div className="form-group ml-5 mr-5">
-                                <label >Username:</label>
+                                <label ><MDBIcon icon="user" /> Username:</label>
                                 <input className="form-control" type="text" value={this.state.username} onChange={this.handleChange} placeholder="enter username" name="username" required />
                             </div>
 
                             <div className="form-group ml-5 mr-5">
-                                <label >Email:</label>
+                                <label ><MDBIcon icon="envelope" /> Email:</label>
                                 <input className="form-control" type="email" value={this.state.email} onChange={this.handleChange} placeholder="enter email id" name="email" required />
                             </div>
 
                             <div className="form-group ml-5 mr-5">
-                                <label >Password:</label>
+                                <label ><MDBIcon icon="key" /> Password:</label>
                                 <input className="form-control" type={this.state.type} value={this.state.password} onChange={this.handleChange} placeholder="enter password" name="password" required />
+                            </div>
+                            <div className="form-group ml-5 mr-5">
+                                <label ><MDBIcon icon="key" /> Confirm Password:</label>
+                                <input className="form-control" type={this.state.type} value={this.state.confirmPassword} onChange={this.handleChange} placeholder="confirm password" name="confirmPassword" required />
                             </div>
                             <div className="form-group ml-5 mr-5">
                                 <input type='checkbox' onChange={this.handleChecked} className="checkbox m-2" />
