@@ -8,7 +8,8 @@ class Register extends React.Component{
             username:'',
             email:'',
             password:'',
-            isRegistered:false
+            isRegistered:false,
+            type:"password"
         }
     }
     handleSubmit = (e) =>{
@@ -18,7 +19,8 @@ class Register extends React.Component{
             email:this.state.email,
             password:this.state.password
         }
-        axios.post("http://localhost:3005/users/register",formData)
+        // const url=("https://contact-manager-himanshu14193.herokuapp.com" || "http://localhost:3005" )
+        axios.post(`http://localhost:3005/users/register`,formData)
             .then(()=>this.props.history.push('/users/login'))
             .catch(err=>console.log(err))
         this.setState(()=>({
@@ -32,6 +34,9 @@ class Register extends React.Component{
         this.setState(()=>({
             [e.target.name]:e.target.value
         }))
+    }
+    handleChecked = (e) =>{
+        e.target.checked?this.setState(()=>({ type:"text" })):this.setState(()=>({ type:"password" }))
     }
     render(){
         return (
@@ -52,7 +57,11 @@ class Register extends React.Component{
 
                             <div className="form-group ml-5 mr-5">
                                 <label >Password:</label>
-                                <input className="form-control" type="password" value={this.state.password} onChange={this.handleChange} placeholder="enter password" name="password" required />
+                                <input className="form-control" type={this.state.type} value={this.state.password} onChange={this.handleChange} placeholder="enter password" name="password" required />
+                            </div>
+                            <div className="form-group ml-5 mr-5">
+                                <input type='checkbox' onChange={this.handleChecked} className="checkbox m-2" />
+                                <label> show password</label>
                             </div>
 
                             <input type="submit" className="btn btn-primary ml-5"/>
