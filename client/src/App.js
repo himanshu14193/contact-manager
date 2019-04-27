@@ -16,8 +16,8 @@ import NoteShow from "./components/notes/NotesShow"
 import NoteEdit from "./components/notes/NotesEdit"
 import Register from "./components/authentication/Register"
 import Login from "./components/authentication/Login"
-import Logout from "./components/authentication/Logout"
 import Account from "./components/authentication/Account"
+import axios from './config/axios';
 
 class App extends Component {
   constructor(){
@@ -41,11 +41,11 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="jumbotron bg-warning text-center m-0 ">
-          <h1>Contact Manager</h1>
+          <h1></h1>
         </div>
         <div>
-          <Navbar className="navbar navbar-expand-sm bg-dark navbar-dark">
-            <NavbarBrand href="/" className="mr-4"><MDBIcon icon="home" /> Home </NavbarBrand>
+          <Navbar className="navbar navbar-expand-sm bg-dark navbar-dark ">
+            <NavbarBrand href="/" className="mr-4"><MDBIcon icon="home" /> Contact Manager </NavbarBrand>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
                   <Collapse isOpen={!this.state.collapsed} navbar>
                   { this.state.isAuthenticated &&
@@ -92,7 +92,16 @@ class App extends Component {
             <Route path="/notes/:id" component={NoteShow} />
             <Route path="/users/register" component={Register} exact={true} />
             <Route path="/users/login" render={()=><Login handleIsAuthenticated={this.handleIsAuthenticated} />} exact={true} />
-            <Route path="/users/logout" render={(props)=><Logout {...props} handleIsAuthenticated={this.handleIsAuthenticated} />} exact={true}/>
+            <Route path="/users/logout" component={(props)=>{
+              localStorage.clear()
+              console.log(props)
+              axios.defaults.headers['x-auth'] = null
+              return(
+                <div>
+                  <h3 align="center">You Have Successfully Logged Out.</h3>
+                </div>
+              )
+            }} exact={true}/>
             <Route path="/users/account" component={Account} exact={true} />
           </Switch>
         </div>

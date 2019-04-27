@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import axios from '../../config/axios'
 import { Link } from 'react-router-dom'
 class ContactsList extends React.Component {
     constructor(){
@@ -24,7 +24,7 @@ class ContactsList extends React.Component {
                                     { this.state.contacts.map(contact => {
                                         return (
                                             <div key={contact._id} >
-                                                <li  className="list-group-item list-group-item-dark m-1"><Link to={`/contacts/${contact._id}`}>{contact.name}</Link></li>
+                                            <Link to={`/contacts/${contact._id}`}><li  className="list-group-item list-group-item-dark m-1">{contact.name}</li></Link>
                                             </div>
                                         )
                                     })}

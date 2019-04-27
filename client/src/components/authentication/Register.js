@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import axios from '../../config/axios'
 import {Card, CardBody} from 'reactstrap'
 import  { MDBIcon }  from "mdbreact"
 class Register extends React.Component{

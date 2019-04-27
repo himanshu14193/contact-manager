@@ -1,18 +1,11 @@
 const express = require('express')
 const router = express.Router()
+const { authenticateUser } = require('../middlewares/authentication')
 const {Contact} = require('../model/Contact')
-router.get('/',function(req,res){
-    Contact.find()
-        .then (function(contacts){
-            res.send(contacts)
-        })
-        .catch(function(err){
-            res.send(err)
-        })
-})
-router.post('/',function(req,res){
+router.post('/', authenticateUser, function(req,res){
     const body = req.body
     const contact = new Contact(body)
+    contact.user = req.user._id
     contact.save()
         .then(function(contact){
             res.send(contact)
@@ -21,9 +14,21 @@ router.post('/',function(req,res){
             res.send(err)
         })
 })
-router.get('/:id',function(req,res){
+router.get('/', authenticateUser, function(req,res){
+    Contact.find({ user:req.user._id })
+        .then (function(contacts){
+            res.send(contacts)
+        })
+        .catch(function(err){
+            res.send(err)
+        })
+})
+router.get('/:id', authenticateUser, function(req,res){
     const id= req.params.id
-    Contact.findById(id)
+    Contact.findOne({
+        user:req.user._id,
+        _id:id
+    })
         .then(function(contact){
             if(contact){
                 res.send(contact)
@@ -36,9 +41,12 @@ router.get('/:id',function(req,res){
             res.send(err)
         })
 })
-router.delete('/:id',function(req,res){
+router.delete('/:id', authenticateUser, function(req,res){
     const id= req.params.id
-    Contact.findByIdAndDelete(id)
+    Contact.findOneAndDelete({
+        user:req.user._id,
+        _id:id
+        })
         .then(function(contact){
             res.send(contact)
         })
@@ -46,11 +54,14 @@ router.delete('/:id',function(req,res){
             res.send(err)
         })
 })
-router.put('/:id',function(req,res){
+router.put('/:id', authenticateUser, function(req,res){
     const id= req.params.id
     const body = req.body
     //finnd by id and update will not run validator
-    Contact.findByIdAndUpdate(id,{$set: body},{new: true, runValidators:true})
+    Contact.findOneAndUpdate({
+        user:req.user._id,
+        _id:id
+        },{$set: body},{new: true, runValidators:true})
         .then(function(contact){
             res.send(contact)
         })

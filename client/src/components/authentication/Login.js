@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import axios from '../../config/axios'
 import  { MDBIcon }  from "mdbreact"
 import { Redirect } from 'react-router-dom'
 import {Card, CardBody} from 'reactstrap'
@@ -33,6 +33,7 @@ class Login extends React.Component{
             console.log(this.props)
             axios.post("/users/login",formData)
                 .then(res=>{
+                    axios.defaults.headers['x-auth'] =res.data
                     localStorage.setItem('token',res.data)
                     this.props.handleIsAuthenticated(true)
                     this.setState(()=>({

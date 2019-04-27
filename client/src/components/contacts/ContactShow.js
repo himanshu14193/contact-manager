@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
+import axios from '../../config/axios'
 import { Card, CardBody, CardText, CardHeader} from 'reactstrap'
 class ShowContact extends React.Component{
     constructor(){
@@ -32,9 +32,9 @@ class ShowContact extends React.Component{
                         <CardText>Email- {this.state.contact.email}</CardText>
                         <CardText>Mobile Number- {this.state.contact.mobile}</CardText>
                     </CardBody>
-                    <button><Link to={`/contacts/edit/${this.state.contact._id}`}>Edit</Link></button>
+                    <Link to={`/contacts/edit/${this.state.contact._id}`}><button className="btn btn-primary btn-block">Edit</button></Link>
                     <button onClick={this.handleDelete}>Delete</button>
-                    <button><Link to="/contacts">Back</Link></button>
+                    <Link to="/contacts"><button className="btn btn-primary btn-block">Back</button></Link>
                 </Card>
 
             </div>

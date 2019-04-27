@@ -3,7 +3,7 @@ const {mongoose} = require('./config/database')
 const { contactsRouter } = require('./app/controller/ContactsController')
 const { notesRouter } = require('./app/controller/NotesController')
 const { usersRouter } = require('./app/controller/UsersController')
-const port = process.env.PORT || 6000
+const port = process.env.PORT || 3005
 const app = express()
 app.use(express.json())
 app.use(function(req,res,next){

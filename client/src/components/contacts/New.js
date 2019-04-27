@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from'axios'
+import axios from'../../config/axios'
 import ContactForm from "./Form"
 class NewContact extends React.Component{
     handleSubmit = (formData) =>{

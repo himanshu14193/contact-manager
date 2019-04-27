@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
+import axios from '../../config/axios'
 import { Card, CardBody,CardSubtitle, CardText, CardHeader} from 'reactstrap'
 class ShowNote extends React.Component{
     constructor(){
@@ -33,9 +33,9 @@ class ShowNote extends React.Component{
                         <CardText tag="h4">{this.state.note.body}</CardText>
                         <CardSubtitle >{this.state.note.tags}</CardSubtitle>
                     </CardBody>
-                    <Link to={`/notes/edit/${this.state.note._id}`} className="btn btn-secondary">Edit</Link>
+                    <Link to={`/notes/edit/${this.state.note._id}`} className="btn btn-primary">Edit</Link>
                     <button onClick={this.handleDelete} className="btn btn-primary">Delete</button>
-                    <Link to="/notes" className="btn btn-secondary">Back</Link>
+                    <Link to="/notes" className="btn btn-primary">Back</Link>
                 </Card>
 
             </div>

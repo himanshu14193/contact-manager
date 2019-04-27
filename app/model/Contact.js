@@ -12,7 +12,12 @@ const contactSchema = new Schema({
         mobile:{
             type: String,
             required: true
+        },
+        user: {
+            type:Schema.Types.ObjectId,
+            ref:'User'
         }
+
 })
 //create a model based on schema
 const Contact = mongoose.model('Contact',contactSchema)

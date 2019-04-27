@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import axios from '../../config/axios'
 import { Card, CardBody, CardText, CardHeader} from 'reactstrap'
 import { Link } from 'react-router-dom'
 class NotesList extends React.Component {
@@ -25,7 +25,7 @@ class NotesList extends React.Component {
                                     { this.state.notes.map(note => {
                                         return (
                                             <Card  body inverse style={{ backgroundColor: '#444' }} className="text m-2" key={note._id}>
-                                                <CardHeader  tag="h4"><Link to={`/notes/${note._id}`}>{note.title}</Link></CardHeader>
+                                            <Link to={`/notes/${note._id}`}><CardHeader  tag="h4">{note.title}</CardHeader></Link>
                                                 <CardBody>
                                                     <CardText tag="h6">{note.body}</CardText>
                                                     <CardText tag="h6">{note.tags}</CardText>

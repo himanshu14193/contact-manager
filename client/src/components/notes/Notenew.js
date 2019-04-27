@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from'axios'
+import axios from'../../config/axios'
 import NoteForm from "./Form"
 class NewNote extends React.Component{
     handleSubmit = (formData) =>{

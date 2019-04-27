@@ -1,10 +1,9 @@
 import React from 'react'
-import axios from 'axios'
+import axios from '../../config/axios'
 class Logout extends React.Component{
     
     componentDidMount(){
-        const token=localStorage.getItem('token')
-        axios.delete("/users/logout",{headers:{"x-auth":token}})
+        axios.delete("/users/logout")
             .then(()=>{
                 this.props.history.push('/')
                 this.props.handleIsAuthenticated(false)
