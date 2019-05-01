@@ -94,6 +94,7 @@ class App extends Component {
             <Route path="/users/login" render={()=><Login handleIsAuthenticated={this.handleIsAuthenticated} />} exact={true} />
             <Route path="/users/logout" component={(props)=>{
               localStorage.clear()
+              
               console.log(props)
               axios.defaults.headers['x-auth'] = null
               return(

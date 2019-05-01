@@ -134,7 +134,6 @@ userSchema.statics.findByCredentialsAndCompare = function(id,oldPassword,newPass
                 })
 }
 userSchema.statics.findByToken = function(token){
-    console.log(token)
     const User = this
     let tokenData
     try{
