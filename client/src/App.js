@@ -17,7 +17,7 @@ import NoteEdit from "./components/notes/NotesEdit"
 import Register from "./components/authentication/Register"
 import Login from "./components/authentication/Login"
 import Account from "./components/authentication/Account"
-import axios from './config/axios';
+import axios from './config/axios'
 
 class App extends Component {
   constructor(){
