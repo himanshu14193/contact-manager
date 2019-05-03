@@ -5,9 +5,9 @@ class Logout extends React.Component{
     componentDidMount(){
         axios.delete("/users/logout")
             .then(()=>{
-                this.props.history.push('/')
-                this.props.handleIsAuthenticated(false)
                 localStorage.clear()
+                this.props.handleIsAuthenticated(false)
+                this.props.history.push('/')
             })
             .catch(err=>console.log(err))        
     }
